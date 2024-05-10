@@ -38,7 +38,6 @@ app.get("/api/parcels", async (req, res) => {
     const serializedParcels = parcels.map((parcel) => ({
       id: parcel.id.toString(),
       price: parcel.price.toString(),
-      sellerId: parcel.sellerId.toString(),
       state: parcel.state,
       city: parcel.city,
       clientFullName: parcel.clientFullName,
@@ -63,7 +62,6 @@ app.get("/api/parcels/:id", async (req, res) => {
     res.json({
       id: parcel.id.toString(),
       price: parcel.price.toString(),
-      sellerId: parcel.sellerId.toString(),
       state: parcel.state,
       city: parcel.city,
       clientFullName: parcel.clientFullName,
@@ -79,12 +77,10 @@ app.get("/api/parcels/:id", async (req, res) => {
 
 app.post("/api/parcels", async (req, res) => {
   try {
-    const { price, sellerId, state, city, clientFullName, clientPhoneNumber } =
-      req.body;
+    const { price, state, city, clientFullName, clientPhoneNumber } = req.body;
 
     const tx = await contractInstance.createParcel(
       price,
-      sellerId,
       state,
       city,
       clientFullName,

@@ -4,7 +4,6 @@ contract Parcel {
     struct ParcelData {
         uint256 id;
         uint price;
-        uint sellerId;
         string state;
         string city;
         string clientFullName;
@@ -27,7 +26,6 @@ contract Parcel {
     event ParcelCreated(
         uint256 indexed id,
         uint price,
-        uint sellerId,
         string state,
         string city,
         string clientFullName,
@@ -47,7 +45,6 @@ contract Parcel {
 
     function createParcel(
         uint _price,
-        uint _sellerId,
         string memory _state,
         string memory _city,
         string memory _clientFullName,
@@ -57,7 +54,6 @@ contract Parcel {
         parcels[parcelCount] = ParcelData(
             parcelCount,
             _price,
-            _sellerId,
             _state,
             _city,
             _clientFullName,
@@ -76,7 +72,6 @@ contract Parcel {
         emit ParcelCreated(
             parcelCount,
             _price,
-            _sellerId,
             _state,
             _city,
             _clientFullName,
